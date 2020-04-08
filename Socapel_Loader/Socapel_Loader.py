@@ -5,12 +5,13 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+import time
 import serial  # module is pyserial
 
 
 class Communication:
 
-    def find_serial_port():
+    def find_serial_port(self):
         """
         This function finds first available
         serial port for use and saves it into
@@ -70,7 +71,7 @@ class Communication:
         if serial_port.is_open:
 
             if address != 'Save':
-                # Send address to drive ready to recieve parameter(ME034~ME0ff)
+                # Send address to drive ready to receive parameter(ME034~ME0ff)
                 serial_port.write((address + '\r').encode('ascii'))
                 # Set delay for slow drive response
                 time.sleep(1)
@@ -117,7 +118,7 @@ class Application(Frame):
             """
             Module pops up a small window checking that user does want to quit
             """
-            if messagebox.askyesno('Question', 'Do you want to Quit?') == True:
+            if messagebox.askYesNo('Question', 'Do you want to Quit?') == True:
                 sys.exit()
 
         def button_mode(selection, opt):
